@@ -15,9 +15,8 @@ jobs:
       - id: set-matrix
         run: bash ./.github/scripts/getFiles.sh
         shell: bash
-  Build:
-    name: Build
-    needs: getAllTestFiles
+  compileTestJava:
+    name: Compile Test Java Classes
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +27,20 @@ jobs:
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build
-        run: ./gradlew :build
+        run: ./gradlew :compileTestJava
+  compileJava:
+    name: Compile Java
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: '16'
+          distribution: 'adopt'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Build
+        run: ./gradlew :compileJava
   Javadoc:
     name: Javadoc test
     runs-on: ubuntu-latest
@@ -43,8 +55,8 @@ jobs:
       - name: do all methods have javadoc
         run: ./gradlew :javadoc
   RunAllTestFiles:
-    name: Running - ${{ matrix.class }}
-    needs: [getAllTestFiles]
+    name: Test - ${{ matrix.class }}
+    needs: [getAllTestFiles, compileJava, compileTestJava]
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{fromJson(needs.getAllTestFiles.outputs.matrix)}}
