@@ -16,10 +16,14 @@ class StringParserTest {
     }
 
     @Test
-    void testParse() {
+    void testParseUntil() {
+        assertEquals("abc", StringParser.parse("abcdef", 'd'));
+        assertEquals("2", StringParser.parse("2'3\"", '\''));
     }
 
     @Test
-    void testParse1() {
+    void testParseFromTo() {
+        assertEquals("3", StringParser.parse("2'3\"", '\'', '"'));
+        assertEquals("cde", StringParser.parse("abcdefg", 'b', 'f'));
     }
 }

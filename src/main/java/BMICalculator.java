@@ -1,14 +1,15 @@
 import java.text.DecimalFormat;
+import java.util.Dictionary;
 import java.util.Scanner;
 
 public class BMICalculator {
     static DecimalFormat DF = new DecimalFormat("0.00");
-
     public static double computeBMI(int inches, int pounds) {
         if (inches<=0 || pounds<=0) return 0;
         double meters = 0.0254*inches;
         double kg = 0.454*pounds;
         return kg/Math.pow(meters, 2);
+
     }
 
     public static void main(String[] args) {
