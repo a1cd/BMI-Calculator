@@ -44,7 +44,7 @@ jobs:
         run: ./gradlew :javadoc
   RunAllTestFiles:
     name: Running - ${{ matrix.class }}
-    needs: Build
+    needs: [getAllTestFiles]
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{fromJson(needs.getAllTestFiles.outputs.matrix)}}
