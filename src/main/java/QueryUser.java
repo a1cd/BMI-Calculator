@@ -7,9 +7,12 @@ class QueryUser {
     public QueryUser(InputStream inputStream) {this(new Scanner(inputStream));}
     public QueryUser() {this(System.in);}
 
-    public String askQuestion(String Question) {
+    public String QueryString(String Question) {
         System.out.print(Question);
         return in.nextLine();
     }
-
+    public int QueryInt(String Question) {
+        String UnparsedInt = this.QueryString(Question.strip());
+        return Integer.parseInt(UnparsedInt);
+    }
 }
