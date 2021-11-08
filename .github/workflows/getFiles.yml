@@ -165,6 +165,8 @@ jobs:
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v2
       - name: Run the Gradle class test
         id: testTheClass
         run: ./gradlew :test --tests ${{ matrix.class }}
