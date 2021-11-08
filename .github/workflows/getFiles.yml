@@ -12,13 +12,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v2
         with:
-          java-version: '16'
+          java-version: '16.0.2-7'
           distribution: 'adopt'
       - name: 'java stuff'
         uses: 'actions/upload-artifact@v2'
         with:
           name: 'java'
-          path: '/opt/hostedtoolcache/Java_Adopt_jdk/'
+          path: '/opt/hostedtoolcache/Java_Adopt_jdk/16.0.2-7/x64'
   getAllTestFiles:
     runs-on: ubuntu-latest
     outputs:
