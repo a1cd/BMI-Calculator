@@ -153,7 +153,7 @@ jobs:
           path: build
   RunAllTestFiles:
     name: Test - ${{ matrix.class }}
-    needs: [getAllTestFiles, compileJava, compileTestJava, processResources, processTestResources, assembleMainClasses]
+    needs: [getAllTestFiles, compileJava, compileTestJava, processResources, processTestResources, assembleMainClasses, assembleTestClasses]
     runs-on: ubuntu-latest
     strategy:
       matrix: ${{fromJson(needs.getAllTestFiles.outputs.matrix)}}
