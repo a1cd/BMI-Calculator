@@ -18,7 +18,7 @@ jobs:
         uses: 'actions/upload-artifact@v2'
         with:
           name: 'java'
-          path: '/opt/'
+          path: '/opt/hostedtoolcache/Java_Adopt_jdk/'
   getAllTestFiles:
     runs-on: ubuntu-latest
     outputs:
