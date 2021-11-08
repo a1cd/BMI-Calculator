@@ -47,7 +47,7 @@ jobs:
           name: build
           path: build
   processTestResources:
-    name: Process Resources
+    name: Process Test Resources
     runs-on: ubuntu-latest
     needs: [ compileTestJava ]
     steps:
