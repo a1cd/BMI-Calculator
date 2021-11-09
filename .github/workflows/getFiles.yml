@@ -54,15 +54,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        if: ${{ needs.isResources.areFiles }}
       - uses: actions/setup-java@v2
+        if: ${{ needs.isResources.areFiles }}
         with:
           java-version: '16'
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build
+        if: ${{ needs.isResources.areFiles }}
         run: ./gradlew :compileJava
       - name: Archive production artifacts
+        if: ${{ needs.isResources.areFiles }}
         uses: actions/upload-artifact@v2
         with:
           name: build
