@@ -1,4 +1,5 @@
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -30,6 +31,12 @@ class QueryUser {
     public int QueryInt(String Question) throws NumberFormatException {
         String UnparsedInt = this.QueryString(Question.strip());
         return Integer.parseInt(UnparsedInt);
+    }
+
+    public boolean QueryY_N(String Question) {
+        // IntelliJ told me "'toLowerCase' call can be replaced with 'equalsIgnoreCase'"
+        // while I was committing to the repo.
+        return QueryString(Question).equalsIgnoreCase("y");
     }
 
     /**
