@@ -3,6 +3,8 @@ name: Test All Class Tests
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - docs
   pull_request:
     branches: [ master ]
 jobs:
@@ -151,14 +153,20 @@ jobs:
         with:
           name: build
           path: build
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.5.9
+      - name: Test
+        uses: actions/upload-artifact@v2
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          CLEAN: true
-          FOLDER: build/docs/javadoc
-          TARGET_FOLDER: javadoc
+          name: javadoc
+          path: build/docs/javadoc
+  UploadJavadoc:
+    name: Upload Javadoc To Docs
+    runs-on: ubuntu-latest
+    needs: [compileJava, processResources, assembleMainClasses, Javadoc]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+          path: docs/javadoc
   RunAllTestFiles:
     name: Test - ${{ matrix.class }}
     needs: [getAllTestFiles, compileJava, compileTestJava, processResources, processTestResources, assembleMainClasses, assembleTestClasses]
