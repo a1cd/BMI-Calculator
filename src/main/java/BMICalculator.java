@@ -34,14 +34,16 @@ public class BMICalculator {
      */
     public static void main(String[] args) {
         QueryUser in = new QueryUser();
+        do {
 
-        // for testing
-        String height = (args.length==2)? args[0]:in.QueryString("Enter your height in feet and inches (format 6'2\"): ");
-        int weight = (args.length==2)? Integer.parseInt(args[1]):in.QueryInt("Enter your weight in pounds: ");
+            // args are for testing
+            String height = (args.length == 2) ? args[0] : in.QueryString("Enter your height in feet and inches (format 6'2\"): ");
+            int weight = (args.length == 2) ? Integer.parseInt(args[1]) : in.QueryInt("Enter your weight in pounds: ");
 
-        StringParser parser = new StringParser(height);
-        System.out.println("Your BMI, expressed as weight(kg)/height(m)^2: " + DF.format(computeBMI(parser.getTotalInches(), weight)) + " kg/m^2");
+            StringParser parser = new StringParser(height);
+            System.out.println("Your BMI, expressed as weight(kg)/height(m)^2: " + DF.format(computeBMI(parser.getTotalInches(), weight)) + " kg/m^2");
 
+        } while (args.length != 2 && in.QueryY_N("Do you want to calculate another? [y/n]: "));// args for testing
         in.Close();
     }
 }
