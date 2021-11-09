@@ -54,19 +54,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        if: ${{ needs.isResources.areFiles }}
       - uses: actions/setup-java@v2
-        if: ${{ needs.isResources.areFiles }}
         with:
           java-version: '16'
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build
-        if: ${{ needs.isResources.areFiles }}
         run: ./gradlew :compileJava
       - name: Archive production artifacts
-        if: ${{ needs.isResources.areFiles }}
         uses: actions/upload-artifact@v2
         with:
           name: build
@@ -105,14 +101,18 @@ jobs:
     needs: [ compileJava, isResources ]
     steps:
       - uses: actions/checkout@v2
+        if: ${{ needs.isResources.areFiles }}
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2
+        if: ${{ needs.isResources.areFiles }}
       - uses: actions/setup-java@v2
         with:
           java-version: '16'
           distribution: 'adopt'
+        if: ${{ needs.isResources.areFiles }}
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+        if: ${{ needs.isResources.areFiles }}
       - name: processResources
         run: ./gradlew :processResources
         if: ${{ needs.isResources.areFiles }}
@@ -121,6 +121,7 @@ jobs:
         with:
           name: build
           path: build
+        if: ${{ needs.isResources.areFiles }}
   assembleMainClasses:
     name: Assemble Main Classes
     runs-on: ubuntu-latest
