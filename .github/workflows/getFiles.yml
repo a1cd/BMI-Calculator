@@ -74,18 +74,23 @@ jobs:
 #    if: ${{ needs.isTestResources.areFiles }}
     steps:
       - uses: actions/checkout@v2
+        if: ${{ needs.isResources.areFiles }}
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v2
+        if: ${{ needs.isResources.areFiles }}
       - uses: actions/setup-java@v2
         with:
           java-version: '16'
           distribution: 'adopt'
+        if: ${{ needs.isResources.areFiles }}
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+        if: ${{ needs.isResources.areFiles }}
       - name: :processTestResources
         run: ./gradlew :processTestResources
         if: ${{ needs.isResources.areFiles }}
       - name: Archive production artifacts
+        if: ${{ needs.isResources.areFiles }}
         uses: actions/upload-artifact@v2
         with:
           name: build
