@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"BMICalculator"},{"p":"<Unnamed>","l":"StringParser"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"BMICalculator"},{"p":"<Unnamed>","l":"StringParser"}]
