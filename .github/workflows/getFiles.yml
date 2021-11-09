@@ -158,23 +158,6 @@ jobs:
         with:
           name: javadoc
           path: build/docs/javadoc
-  UploadJavadoc:
-    name: Upload Javadoc To Docs
-    runs-on: ubuntu-latest
-#    needs: [compileJava, processResources, assembleMainClasses, Javadoc]
-    needs: Javadoc
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: javadoc
-          path: docs/javadoc
-      - id: git
-        run: |
-          git config --global user.name 'Javadoc Bot'
-          git config --global user.email 'javadoc-bot@users.noreply.github.com'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "javadocs added"
-          git pus
   RunAllTestFiles:
     name: Test - ${{ matrix.class }}
     needs: [getAllTestFiles, compileJava, compileTestJava, processResources, processTestResources, assembleMainClasses, assembleTestClasses]
