@@ -71,7 +71,7 @@ jobs:
     name: Process Test Resources
     runs-on: ubuntu-latest
     needs: [ compileTestJava, isTestResources ]
-    if: ${{ jobs.isTestResources.areFiles }}
+    if: ${{ needs.isTestResources.areFiles }}
     steps:
       - uses: actions/checkout@v2
       - name: Download all workflow run artifacts
@@ -93,7 +93,7 @@ jobs:
     name: Process Resources
     runs-on: ubuntu-latest
     needs: [ compileJava, isResources ]
-    if: ${{ jobs.isResources.areFiles }}
+    if: ${{ needs.isResources.areFiles }}
     steps:
       - uses: actions/checkout@v2
       - name: Download all workflow run artifacts
