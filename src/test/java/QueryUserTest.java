@@ -1,10 +1,9 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class QueryUserTest {
     @Test
     public void constructor(){
-
+        QueryUser in = new QueryUser();
+        in.Close();
     }
 }

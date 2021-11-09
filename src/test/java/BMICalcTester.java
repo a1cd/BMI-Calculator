@@ -5,10 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Array;
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class BMICalcTester {
 	private static final DecimalFormat df = new DecimalFormat("0.00");
-
+	@Test
+	@DisplayName("test psvm")
+	public void testMain() {
+		String[] args = {"5'1\"", "110"};
+		BMICalculator.main(args);
+	}
 	@Test
 	@DisplayName("test all tests")
 	public void testComputeBMI() {
