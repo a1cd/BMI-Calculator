@@ -90,7 +90,7 @@ jobs:
   processResources:
     name: Process Resources
     runs-on: ubuntu-latest
-    needs: [ compileJava, isTestResources ]
+    needs: [ compileJava, isResources ]
     if: ${{ jobs.isResources.areFiles }}
     steps:
       - uses: actions/checkout@v2
