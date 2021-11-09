@@ -168,6 +168,13 @@ jobs:
         with:
           name: javadoc
           path: docs/javadoc
+      - id: git
+        run: |
+          git config --global user.name 'Javadoc Bot'
+          git config --global user.email 'javadoc-bot@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git commit -am "javadocs added"
+          git pus
   RunAllTestFiles:
     name: Test - ${{ matrix.class }}
     needs: [getAllTestFiles, compileJava, compileTestJava, processResources, processTestResources, assembleMainClasses, assembleTestClasses]
