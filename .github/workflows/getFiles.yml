@@ -18,15 +18,6 @@ jobs:
       - id: set-matrix
         run: bash ./.github/scripts/getFiles.sh
         shell: bash
-  isResources:
-    runs-on: ubuntu-latest
-    outputs:
-      areFiles: ${{ steps.random-number-generator.outputs.bool }}
-    steps:
-      - uses: actions/checkout@v2
-      - id: set-value
-        run: bash ./.github/scripts/areFilesInDirectory.sh main
-        shell: bash
   isTestResources:
     runs-on: ubuntu-latest
     outputs:
@@ -49,6 +40,15 @@ jobs:
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
       - name: Build
         run: ./gradlew :compileTestJava
+  isResources:
+    runs-on: ubuntu-latest
+    outputs:
+      areFiles: ${{ steps.random-number-generator.outputs.bool }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: set-value
+        run: bash ./.github/scripts/areFilesInDirectory.sh main
+        shell: bash
   compileJava:
     name: Compile Java
     runs-on: ubuntu-latest
