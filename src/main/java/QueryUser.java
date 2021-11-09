@@ -27,7 +27,7 @@ class QueryUser {
      * @param Question The question to ask the user
      * @return the user's int response
      */
-    public int QueryInt(String Question) {
+    public int QueryInt(String Question) throws NumberFormatException {
         String UnparsedInt = this.QueryString(Question.strip());
         return Integer.parseInt(UnparsedInt);
     }
