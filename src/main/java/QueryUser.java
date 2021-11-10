@@ -32,7 +32,11 @@ class QueryUser {
         String UnparsedInt = this.QueryString(Question.strip());
         return Integer.parseInt(UnparsedInt);
     }
-
+    /**
+     * ask the user for a yes or no answer
+     * @param Question The question to ask the user
+     * @return the user's boolean response (y is true, anything else is no)
+     */
     public boolean QueryY_N(String Question) {
         // IntelliJ told me "'toLowerCase' call can be replaced with 'equalsIgnoreCase'"
         // while I was committing to the repo.
