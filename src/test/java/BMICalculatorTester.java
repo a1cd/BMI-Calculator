@@ -7,7 +7,7 @@ import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.List;
 
-public class BMICalcTester {
+public class BMICalculatorTester {
 	private static final DecimalFormat df = new DecimalFormat("0.00");
 	@Test
 	@DisplayName("test psvm")
