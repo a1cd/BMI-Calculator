@@ -1,3 +1,5 @@
+[![Test All Class Tests](https://github.com/a1cd/BMI-Calculator/actions/workflows/getFiles.yml/badge.svg)](https://github.com/a1cd/BMI-Calculator/actions/workflows/getFiles.yml)
+
 - .java files are in [src/main/java](https://github.com/a1cd/BMI-Calculator/tree/master/src/main/java)
 - test.java files are in [src/test/java](https://github.com/a1cd/BMI-Calculator/tree/master/src/test/java)
 
